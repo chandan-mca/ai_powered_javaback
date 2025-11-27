@@ -3,6 +3,7 @@ package com.substring.core;
 import com.substring.core.concepts.Car;
 import com.substring.core.concepts.Engine;
 import com.substring.core.concepts.Fuel;
+import com.substring.core.concepts.Jalebi;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //assemble
 //        Fuel fuel1=new Fuel();
 //        Engine bmwEngine1=new Engine(fuel1);
@@ -33,18 +34,26 @@ public class App {
 //        Car car1 = context.getBean("car1", Car.class);
 //        car1.startCar();
 
-        AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(Config.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
-        Fuel fuel = context.getBean("petrolFuel", Fuel.class);
-        fuel.use();
-        Engine bmwEngine = context.getBean("bmwEngine", Engine.class);
-        bmwEngine.startEngine();
+//
+        Jalebi jalebi1 = context.getBean("jalebi1", Jalebi.class);
+        jalebi1.eat();
+//
+//        Jalebi jalebi2 = context.getBean("jalebi1", Jalebi.class);
+//        jalebi2.eat();
 
-        System.out.println("============================");
-        Car car = context.getBean("car", Car.class);
-        car.startCar();
-        System.out.println(car.carName);
+//        Fuel fuel = context.getBean("petrolFuel", Fuel.class);
+//        fuel.use();
+//        Engine bmwEngine = context.getBean("bmwEngine", Engine.class);
+//        bmwEngine.startEngine();
+//
+//        System.out.println("============================");
+//        Car car = context.getBean("car", Car.class);
+//        car.startCar();
+//        System.out.println(car.carName);
 
+//        jalebi1.destroy();
         context.registerShutdownHook();
 
     }

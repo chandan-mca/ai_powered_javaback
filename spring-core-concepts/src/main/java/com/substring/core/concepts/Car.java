@@ -1,12 +1,12 @@
 package com.substring.core.concepts;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Car implements InitializingBean, DisposableBean
+public class Car
 {
 
     //car is dependent on engine
@@ -38,8 +38,10 @@ public class Car implements InitializingBean, DisposableBean
     }
 
     //    init()
-    @Override
-    public void afterPropertiesSet() throws Exception {
+
+
+    @PostConstruct
+    public void init() throws Exception {
         System.out.println("car bean is initializing.....init()");
         System.out.println(this.engine);
         this.carName="Tata Safari";
@@ -47,7 +49,8 @@ public class Car implements InitializingBean, DisposableBean
 
     //destroy()
 
-    @Override
+
+    @PreDestroy
     public void destroy() throws Exception {
         System.out.println("car cleanup");
         this.carName=null;

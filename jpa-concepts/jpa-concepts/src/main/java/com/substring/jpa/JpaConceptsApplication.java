@@ -2,14 +2,15 @@ package com.substring.jpa;
 
 import com.substring.jpa.controller.TestController;
 import com.substring.jpa.models.Student;
+import com.substring.jpa.services.EmailService;
+import com.substring.jpa.services.OrderService;
+import com.substring.jpa.services.impl.MailstrapService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
 @SpringBootApplication
 public class JpaConceptsApplication {
@@ -41,6 +42,13 @@ public class JpaConceptsApplication {
 
         //internal:
 //        context.getBean()
+
+        var emailService = context.getBean(EmailService.class);
+        emailService.sendEmail("Meeting for developers", "I want to conduct meeting on monday.", "teamLead@dev.in");
+
+
+        var orderService=context.getBean(OrderService.class);
+        orderService.sendInvoice();
 
     }
 

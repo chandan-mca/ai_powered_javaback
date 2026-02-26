@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { History, TrendingUp, AlertCircle } from "lucide-react";
+import { History, TrendingUp, AlertCircle, Lightbulb } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 interface ExperienceGapAnalysisProps {
@@ -65,8 +65,8 @@ export function ExperienceGapAnalysis({
 
                         <div className="flex justify-center mt-4 pt-4 border-t border-border">
                             <span className={`text-sm font-medium px-3 py-1 rounded-full flex items-center gap-1.5 ${meetsRequirement
-                                    ? 'bg-green-500/10 text-green-500'
-                                    : 'bg-yellow-500/10 text-yellow-500'
+                                ? 'bg-green-500/10 text-green-500'
+                                : 'bg-yellow-500/10 text-yellow-500'
                                 }`}>
                                 {meetsRequirement ? (
                                     <TrendingUp className="w-4 h-4" />
@@ -80,13 +80,13 @@ export function ExperienceGapAnalysis({
                         </div>
                     </div>
 
-                    {/* AI Insight */}
+                    {/* Key Insight */}
                     <div className="w-full md:w-1/2">
                         <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 relative">
-                            <div className="absolute -top-3 -left-3 bg-background border border-primary/30 rounded-full p-2">
-                                <span className="text-xl">🧠</span>
+                            <div className="absolute -top-3 -left-3 bg-background border border-primary/30 rounded-full p-2 text-primary">
+                                <Lightbulb className="w-5 h-5" />
                             </div>
-                            <h4 className="font-semibold mb-2 text-primary ml-4">AI Insight</h4>
+                            <h4 className="font-semibold mb-2 text-primary ml-4">Analysis Insight</h4>
                             <p className="text-muted-foreground leading-relaxed">
                                 {gapSummary}
                             </p>

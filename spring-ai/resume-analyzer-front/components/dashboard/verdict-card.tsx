@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Target, Briefcase, Zap } from "lucide-react";
+import { ClipboardCheck, Target, Briefcase, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface VerdictCardProps {
@@ -16,36 +16,28 @@ export function VerdictCard({ roleFitLevel, finalVerdict, careerReadiness }: Ver
         switch (roleFitLevel?.trim()) {
             case "Excellent":
                 return {
-                    glow: "shadow-[0_0_30px_rgba(34,197,94,0.3)]",
-                    border: "border-green-500/50",
-                    text: "text-green-500",
+                    border: "border-green-500/20",
+                    text: "text-green-600 dark:text-green-500",
                     bg: "bg-green-500/10",
-                    gradient: "from-green-500/20 to-transparent"
                 };
             case "Good":
                 return {
-                    glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]",
-                    border: "border-blue-500/50",
-                    text: "text-blue-500",
+                    border: "border-blue-500/20",
+                    text: "text-blue-600 dark:text-blue-500",
                     bg: "bg-blue-500/10",
-                    gradient: "from-blue-500/20 to-transparent"
                 };
             case "Poor":
                 return {
-                    glow: "shadow-[0_0_30px_rgba(239,68,68,0.3)]",
-                    border: "border-red-500/50",
-                    text: "text-red-500",
+                    border: "border-red-500/20",
+                    text: "text-red-600 dark:text-red-500",
                     bg: "bg-red-500/10",
-                    gradient: "from-red-500/20 to-transparent"
                 };
             case "Average":
             default:
                 return {
-                    glow: "shadow-[0_0_30px_rgba(234,179,8,0.3)]",
-                    border: "border-yellow-500/50",
-                    text: "text-yellow-500",
+                    border: "border-yellow-500/20",
+                    text: "text-yellow-600 dark:text-yellow-500",
                     bg: "bg-yellow-500/10",
-                    gradient: "from-yellow-500/20 to-transparent"
                 };
         }
     };
@@ -59,25 +51,19 @@ export function VerdictCard({ roleFitLevel, finalVerdict, careerReadiness }: Ver
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            <Card className={`glass-card overflow-hidden relative ${style.border} ${style.glow} mt-8`}>
-                {/* Animated Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${style.gradient} opacity-50 pointer-events-none`} />
-
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-
+            <Card className={`glass-card overflow-hidden relative ${style.border} mt-8`}>
                 <CardContent className="p-8 md:p-12 relative z-10 flex flex-col items-center text-center">
 
-                    <div className="inline-flex items-center justify-center p-3 mb-6 rounded-2xl bg-background border border-white/10 shadow-xl">
-                        <Sparkles className={`w-8 h-8 ${style.text}`} />
+                    <div className={`inline-flex items-center justify-center p-4 mb-6 rounded-2xl ${style.bg} border-none`}>
+                        <ClipboardCheck className={`w-8 h-8 ${style.text}`} />
                     </div>
 
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                        AI Recruiter Verdict
+                    <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">
+                        Analysis Verdict
                     </h2>
 
-                    <div className="inline-block relative mb-8 group">
-                        <div className={`absolute inset-0 ${style.bg} blur-xl rounded-full scale-150 group-hover:scale-175 transition-transform duration-500 pointer-events-none`} />
-                        <h3 className={`text-4xl md:text-6xl font-black uppercase tracking-widest relative z-10 ${style.text} drop-shadow-md`}>
+                    <div className="inline-block relative mb-8">
+                        <h3 className={`text-4xl md:text-5xl font-black uppercase tracking-widest relative z-10 ${style.text}`}>
                             {roleFitLevel}
                         </h3>
                     </div>

@@ -97,11 +97,11 @@ export function ScoreOverview({ data }: { data: ScoresData }) {
         <div className="w-full">
             <div className="mb-6 flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-semibold tracking-tight">AI Evaluation</h2>
+                    <h2 className="text-2xl font-semibold tracking-tight">Profile Evaluation</h2>
                     <p className="text-muted-foreground">Comprehensive metric breakdown of your profile</p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="h-16 w-16 rounded-full border-4 border-primary flex items-center justify-center bg-primary/10 shadow-[0_0_15px_rgba(var(--primary),0.3)]">
+                    <div className="h-16 w-16 rounded-full border-4 border-primary flex items-center justify-center bg-primary/10">
                         <span className="text-xl font-bold text-primary">
                             <AnimatedCounter value={data.matchPercentage} />%
                         </span>

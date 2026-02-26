@@ -112,29 +112,17 @@ export default function Home() {
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-background">
-      {/* Dynamic Background Elements */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-500/20 rounded-full blur-[120px]" />
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-      </div>
-
       <div className="container mx-auto px-4 py-8 relative z-10">
-
         {/* Header / Nav Area (Simple) */}
         {!analysisResult && (
           <header className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-cyan-400 flex items-center justify-center shadow-lg shadow-primary/20">
-                <span className="text-white font-bold text-lg">AI</span>
-              </div>
-              <span className="font-semibold text-lg tracking-tight">Resume<span className="text-primary">X</span></span>
+              <span className="font-bold text-xl tracking-tight">ResumeAnalyzer<span className="text-primary">.pro</span></span>
             </div>
             <nav className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">How it works</a>
+              <a href="#" className="hover:text-foreground transition-colors">Solutions</a>
               <a href="#" className="hover:text-foreground transition-colors">Pricing</a>
-              <a href="#" className="hover:text-foreground transition-colors">Resources</a>
+              <a href="#" className="hover:text-foreground transition-colors">Enterprise</a>
             </nav>
           </header>
         )}

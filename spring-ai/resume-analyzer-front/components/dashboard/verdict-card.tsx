@@ -6,14 +6,14 @@ import { Sparkles, Target, Briefcase, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface VerdictCardProps {
-    roleFitLevel: "Excellent" | "Good" | "Average" | "Poor";
+    roleFitLevel: string;
     finalVerdict: string;
     careerReadiness: string;
 }
 
 export function VerdictCard({ roleFitLevel, finalVerdict, careerReadiness }: VerdictCardProps) {
     const getVerdictStyle = () => {
-        switch (roleFitLevel) {
+        switch (roleFitLevel?.trim()) {
             case "Excellent":
                 return {
                     glow: "shadow-[0_0_30px_rgba(34,197,94,0.3)]",
@@ -30,14 +30,6 @@ export function VerdictCard({ roleFitLevel, finalVerdict, careerReadiness }: Ver
                     bg: "bg-blue-500/10",
                     gradient: "from-blue-500/20 to-transparent"
                 };
-            case "Average":
-                return {
-                    glow: "shadow-[0_0_30px_rgba(234,179,8,0.3)]",
-                    border: "border-yellow-500/50",
-                    text: "text-yellow-500",
-                    bg: "bg-yellow-500/10",
-                    gradient: "from-yellow-500/20 to-transparent"
-                };
             case "Poor":
                 return {
                     glow: "shadow-[0_0_30px_rgba(239,68,68,0.3)]",
@@ -45,6 +37,15 @@ export function VerdictCard({ roleFitLevel, finalVerdict, careerReadiness }: Ver
                     text: "text-red-500",
                     bg: "bg-red-500/10",
                     gradient: "from-red-500/20 to-transparent"
+                };
+            case "Average":
+            default:
+                return {
+                    glow: "shadow-[0_0_30px_rgba(234,179,8,0.3)]",
+                    border: "border-yellow-500/50",
+                    text: "text-yellow-500",
+                    bg: "bg-yellow-500/10",
+                    gradient: "from-yellow-500/20 to-transparent"
                 };
         }
     };

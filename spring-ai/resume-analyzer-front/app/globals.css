@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -83,17 +81,18 @@
 }
 
 .dark {
-  --background: oklch(0.12 0.01 240); /* Very dark bluedish gray */
+  --background: oklch(0.12 0.01 240);
+  /* Very dark bluedish gray */
   --foreground: oklch(0.95 0.01 240);
   --card: oklch(0.15 0.02 240);
   --card-foreground: oklch(0.95 0.01 240);
   --popover: oklch(0.15 0.02 240);
   --popover-foreground: oklch(0.95 0.01 240);
-  
+
   /* Accent color - Neon blue/purple */
-  --primary: oklch(0.65 0.2 280); 
+  --primary: oklch(0.65 0.2 280);
   --primary-foreground: oklch(0.98 0 0);
-  
+
   --secondary: oklch(0.22 0.03 240);
   --secondary-foreground: oklch(0.95 0.01 240);
   --muted: oklch(0.22 0.03 240);
@@ -101,18 +100,23 @@
   --accent: oklch(0.25 0.04 240);
   --accent-foreground: oklch(0.95 0.01 240);
   --destructive: oklch(0.6 0.2 20);
-  
+
   --border: oklch(0.25 0.03 240);
   --input: oklch(0.25 0.03 240);
   --ring: oklch(0.65 0.2 280);
-  
+
   /* Brand colors for charts */
-  --chart-1: oklch(0.65 0.2 280); /* Purple */
-  --chart-2: oklch(0.7 0.15 200); /* Cyan */
-  --chart-3: oklch(0.75 0.18 150); /* Green */
-  --chart-4: oklch(0.7 0.18 40); /* Orange */
-  --chart-5: oklch(0.65 0.2 340); /* Pink */
-  
+  --chart-1: oklch(0.65 0.2 280);
+  /* Purple */
+  --chart-2: oklch(0.7 0.15 200);
+  /* Cyan */
+  --chart-3: oklch(0.75 0.18 150);
+  /* Green */
+  --chart-4: oklch(0.7 0.18 40);
+  /* Orange */
+  --chart-5: oklch(0.65 0.2 340);
+  /* Pink */
+
   --sidebar: oklch(0.15 0.02 240);
   --sidebar-foreground: oklch(0.95 0.01 240);
   --sidebar-primary: oklch(0.65 0.2 280);
@@ -125,11 +129,13 @@
 
 @layer utilities {
   .glass {
-    @apply bg-background/60 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+    @apply bg-background/60 backdrop-blur-xl border border-white/10;
   }
+
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-xl hover:shadow-2xl transition-all duration-300;
+    @apply bg-card/60 backdrop-blur-xl border border-white/5;
   }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-indigo-400 to-cyan-400;
   }
@@ -139,6 +145,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

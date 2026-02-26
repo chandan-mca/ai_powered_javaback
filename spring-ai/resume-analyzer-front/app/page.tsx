@@ -15,159 +15,94 @@ import { ResumeOptimizationSection } from "@/components/dashboard/resume-optimiz
 import { LearningRoadmap } from "@/components/dashboard/learning-roadmap";
 import { ResumePreview } from "@/components/dashboard/resume-preview";
 
-// Mock Data Generator
-const generateMockAnalysis = (jobProfile: string) => {
-  return {
-    scores: {
-      technicalScore: 85,
-      communicationScore: 78,
-      domainScore: 92,
-      experienceScore: 70,
-      atsScore: 65,
-      matchPercentage: 78,
-    },
-    chartData: {
-      radarData: [
-        { subject: 'Technical skills', score: 85 },
-        { subject: 'Soft skills', score: 78 },
-        { subject: 'Domain Knowledge', score: 92 },
-        { subject: 'Experience', score: 70 },
-        { subject: 'Education', score: 95 },
-      ],
-      barData: [
-        { name: 'Core Skills', strengths: 8, improvements: 2 },
-        { name: 'Tools/Tech', strengths: 12, improvements: 5 },
-        { name: 'Formatting', strengths: 3, improvements: 7 },
-        { name: 'Metrics', strengths: 2, improvements: 6 },
-      ]
-    },
-    insights: {
-      strengths: [
-        "Strong foundation in core Java and Spring Boot ecosystem",
-        "Excellent academic background",
-        "Good project experience with microservices architecture",
-        "Clear demonstration of RESTful API design principles",
-        "Familiarity with containerization (Docker)"
-      ],
-      improvements: [
-        "Lack of quantified metrics in project descriptions (e.g., 'improved performance by X%')",
-        "Missing cloud platform experience (AWS/GCP/Azure)",
-        "Inconsistent date formatting in experience section",
-        "Missing keywords related to CI/CD pipelines",
-        "Summary section is too generic, needs more direct alignment with " + jobProfile
-      ]
-    },
-    skills: {
-      missingSkills: ["AWS/Azure", "Kubernetes", "GraphQL", "Redis Caching"],
-      keywordGaps: ["Scalability", "High Availability", "Agile Methodology", "TDD"],
-      recommendedTech: ["Kafka", "Elasticsearch", "React/Angular Basics"],
-      recommendedCerts: ["AWS Certified Developer", "Spring Professional Certification"]
-    },
-    experience: {
-      required: 5,
-      actual: 3,
-      gapSummary: `Your 3 years of experience shows solid progression, but falls slightly short of the typical 5-year requirement for Senior ${jobProfile} roles. To bridge this gap, emphasize complex architectural decisions you've made, mentoring junior developers, and taking ownership of full application lifecycles.`
-    },
-    verdict: {
-      roleFitLevel: "Good" as "Good",
-      text: `You have a strong technical foundation for the ${jobProfile} role, but need to position your experience more strategically. By quantifying your impact and adding key cloud technologies, you would be a highly competitive candidate.`,
-      readiness: "Ready with minor resume tweaks"
-    },
-    optimization: {
-      atsRisks: [
-        "Complex table layout in skills section might break ATS parsers",
-        "Using graphics/icons instead of standard bullet points",
-        "Header/Footer contains contact info that might be missed"
-      ],
-      tips: [
-        "Replace 'Responsible for developing' with active verbs like 'Architected and deployed'",
-        "Add a dedicated 'Technical Summary' immediately below contact info",
-        "Standardize all dates to MM/YYYY format for reliable parsing"
-      ],
-      highImpactFixes: [
-        "Add quantifiable metrics: 'Reduced API response time by 40% using Redis'",
-        "Remove the objective statement and replace with a targeted professional summary",
-        "Separate Core Skills from Tools & Technologies"
-      ]
-    },
-    roadmap: {
-      shortTermText: [
-        "Restructure resume layout to standard ATS template",
-        "Rewrite top 3 project bullets using the XYZ formula",
-        "Add a portfolio matching missing keyword list",
-        "Deploy one personal project to AWS Free Tier"
-      ],
-      longTermText: [
-        "Obtain a recognized Cloud Certification (AWS/Azure)",
-        "Contribute to an open-source project related to target domain",
-        "Master system design principles for scalability",
-        "Build a project demonstrating microservices orchestration (K8s)"
-      ]
-    },
-    markdown: `# John Doe
-**${jobProfile}** | john.doe@email.com | (555) 123-4567 | github.com/johndoe | linkedin.com/in/johndoe
-
-## Professional Summary
-Results-driven Software Engineer with 3 years of experience designing and implementing scalable backend systems using Java and Spring Boot. Proven ability to optimize database queries, resulting in 40% faster load times for critical reporting applications. Eager to bring expertise in microservices architecture to a high-growth engineering team.
-
-## Core Competencies
-**Languages:** Java 11/17, SQL, JavaScript, HTML/CSS
-**Frameworks/Libraries:** Spring Boot, Spring Data JPA, Spring Security, Hibernate
-**Tools & Infrastructure:** Git, Docker, Jenkins (CI/CD), PostgreSQL, MongoDB
-**Methodologies:** Agile/Scrum, RESTful API Design, Microservices, TDD
-
-## Professional Experience
-
-### Software Engineer II | TechCorp Solutions
-*June 2021 – Present*
-* Architected and developed a high-throughput transaction processing microservice using Spring Boot and Apache Kafka, robustly handling 5,000+ requests per second.
-* Optimized legacy SQL queries and introduced Redis caching, reducing average API response time from 800ms to 120ms (an 85% improvement).
-* Collaborated with cross-functional product and QA teams to deliver 4 major feature releases ahead of schedule using Agile methodologies.
-* Mentored 2 junior developers in clean code practices and test-driven development.
-
-### Junior Java Developer | InnovateIT
-*January 2020 – May 2021*
-* Developed and maintained RESTful APIs for a customer-facing portal, serving over 10,000 active users.
-* Migrated monolithic authentication service to OAuth2/JWT based authorization server.
-* Automated deployment pipelines using Jenkins, reducing manual deployment time by 2 hours per week.
-* Covered 85% of newly written code with JUnit and Mockito unit tests.
-
-## Education
-
-**Bachelor of Science in Computer Science**
-*University of Technology* | Graduated: Dec 2019
-* GPA: 3.8/4.0
-* Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering
-
-## Selected Projects
-
-**E-Commerce Inventory Manager**
-* Built a full-stack inventory management system using Spring Boot backend and React frontend.
-* Implemented secure user authentication and role-based access control using Spring Security.
-
-**Personal Finance Tracker API**
-* Designed a REST API wrapper around Plaid's financial data API to aggregate user transaction data.
-* Deployed containerized application to AWS EC2 instance.
-`
-  };
-};
-
 export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<any>(null);
 
-  const handleAnalyze = (file: File, jobProfile: string) => {
+  const handleAnalyze = async (file: File, jobProfile: string) => {
     setIsAnalyzing(true);
 
-    // Simulate API call delay
-    setTimeout(() => {
-      const mockResult = generateMockAnalysis(jobProfile);
-      setAnalysisResult(mockResult);
-      setIsAnalyzing(false);
+    try {
+      const formData = new FormData();
+      formData.append("resume", file);
+      formData.append("jobProfile", jobProfile);
 
-      // Scroll to top of dashboard after analysis
+      const response = await fetch("http://localhost:8081/api/v1/resume", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to analyze resume");
+      }
+
+      const rawData = await response.json();
+      console.log(rawData);
+
+      const mappedResult = {
+        scores: {
+          technicalScore: rawData.technicalScore || 0,
+          communicationScore: rawData.communicationScore || 0,
+          domainScore: rawData.domainScore || 0,
+          experienceScore: rawData.experienceScore || 0,
+          atsScore: rawData.atsScore || 0,
+          matchPercentage: rawData.matchingPercentage || 0,
+        },
+        chartData: {
+          radarData: [
+            { subject: 'Technical', score: rawData.technicalScore || 0 },
+            { subject: 'Communication', score: rawData.communicationScore || 0 },
+            { subject: 'Domain', score: rawData.domainScore || 0 },
+            { subject: 'Experience', score: rawData.experienceScore || 0 },
+            { subject: 'ATS Ready', score: rawData.atsScore || 0 },
+          ],
+          barData: [
+            { name: 'Core Fit', strengths: rawData.strengths?.length || 0, improvements: rawData.improvements?.length || 0 },
+            { name: 'Keywords', strengths: 5, improvements: rawData.keywordGaps?.length || 0 },
+            { name: 'ATS Risks', strengths: 5, improvements: rawData.atsRisks?.length || 0 },
+            { name: 'Optimization', strengths: 4, improvements: rawData.resumeOptimizationTips?.length || 0 },
+          ]
+        },
+        insights: {
+          strengths: rawData.strengths || [],
+          improvements: rawData.improvements || []
+        },
+        skills: {
+          missingSkills: rawData.missingSkills || [],
+          keywordGaps: rawData.keywordGaps || [],
+          recommendedTech: rawData.recommendedTechnologies || [],
+          recommendedCerts: rawData.recommendedCertifications || []
+        },
+        experience: {
+          required: rawData.experienceGapAnalysis?.requiredYears || 0,
+          actual: rawData.experienceGapAnalysis?.actualYears || 0,
+          gapSummary: rawData.experienceGapAnalysis?.gapSummary || ""
+        },
+        verdict: {
+          roleFitLevel: rawData.roleFitLevel || "Average",
+          text: rawData.finalRecruiterVerdict || "",
+          readiness: rawData.careerReadinessLevel || ""
+        },
+        optimization: {
+          atsRisks: rawData.atsRisks || [],
+          tips: rawData.resumeOptimizationTips || [],
+          highImpactFixes: rawData.highImpactResumeFixes || []
+        },
+        roadmap: {
+          shortTermText: rawData.shortTermLearningGoals || [],
+          longTermText: rawData.longTermLearningGoals || []
+        },
+        markdown: rawData.improvedResumeMarkdown || "No markdown returned."
+      };
+
+      setAnalysisResult(mappedResult);
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 3000);
+    } catch (error) {
+      console.error("Error analyzing resume:", error);
+      alert("Error parsing resume from AI. Please make sure the backend server (localhost:8081) is running.");
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const resetAnalysis = () => {

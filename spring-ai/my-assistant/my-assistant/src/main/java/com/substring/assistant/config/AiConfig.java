@@ -34,7 +34,7 @@ public class AiConfig {
 
 
         MessageWindowChatMemory chatMemory = MessageWindowChatMemory.builder()
-                .maxMessages(10)
+                .maxMessages(5)
                 .chatMemoryRepository(
                         jdbcChatRepository
                 )

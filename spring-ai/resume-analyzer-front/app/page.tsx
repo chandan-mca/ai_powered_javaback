@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Components
 import { ResumeUploadSection } from "@/components/upload/resume-upload-section";
+import { ModeToggle } from "@/components/mode-toggle";
+import Link from "next/link";
 import { ScoreOverview } from "@/components/dashboard/score-overview";
 import { AnalysisCharts } from "@/components/dashboard/analysis-charts";
 import { StrengthsAndImprovements } from "@/components/dashboard/strengths-improvements";
@@ -119,10 +120,11 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <span className="font-bold text-xl tracking-tight">ResumeAnalyzer<span className="text-primary">.pro</span></span>
             </div>
-            <nav className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Solutions</a>
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+              <Link href="/features" className="hover:text-foreground transition-colors">Features</Link>
               <a href="#" className="hover:text-foreground transition-colors">Pricing</a>
               <a href="#" className="hover:text-foreground transition-colors">Enterprise</a>
+              <ModeToggle />
             </nav>
           </header>
         )}
